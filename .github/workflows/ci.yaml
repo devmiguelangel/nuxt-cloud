@@ -24,9 +24,14 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Get current branch and store it in a scret
+        run: |
+          echo "BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
+          echo "BRANCH_NAME=${{ env.BRANCH }}" >> $GITHUB_OUTPUT
+
       - name: Publish
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist/ --project-name=mmapp
+          command: pages deploy dist/ --project-name=mmapp --branch=${{ env.BRANCH_NAME }}
