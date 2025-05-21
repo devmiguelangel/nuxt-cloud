@@ -11,5 +11,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxt/ui'
-  ]
+  ],
+  nitro: {
+    preset: 'cloudflare-pages',
+  },
+
 })
