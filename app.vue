@@ -3,7 +3,7 @@
     <NuxtRouteAnnouncer />
 
     <div class="hello-world">
-      Hello World
+      Hello World !!!
     </div>
   </div>
 </template>
