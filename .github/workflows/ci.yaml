@@ -24,10 +24,8 @@ jobs:
       - name: Build
         run: bun run build
 
-      - name: Get current branch and store it in a scret
-        run: |
-          echo "BRANCH=$(git branch --show-current)" >> $GITHUB_ENV
-          echo "BRANCH_NAME=${{ env.BRANCH }}" >> $GITHUB_OUTPUT
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
       - name: Publish
         uses: cloudflare/wrangler-action@v3
